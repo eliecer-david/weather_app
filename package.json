@@ -2,8 +2,9 @@
   "name": "weather_app",
   "version": "0.0.1",
   "description": "This is an app to search a city, show its latitude, longitude and weather. This is using Mapbox and OpenWeather APIs.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

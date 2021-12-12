@@ -53,8 +53,35 @@ const getInput = async (message) => {
   return input;
 }
 
+const showCitiesChecklist = async (cities = []) => {
+  const choices = cities.map((city, key) => {
+    const index = key + 1;
+
+    return {
+      value: city.id,
+      name: `${ index }. ${ city.name }`
+    }
+  });
+
+  choices.unshift({
+    value: 0,
+    name: '0. Return back'
+  });
+
+  const question = {
+    type: 'list',
+    name: 'city',
+    message: 'Select a city',
+    choices
+  }
+
+  const { city } = await inquirer.prompt([ question ]);
+  return city;
+}
+
 module.exports = {
   mainMenu,
   pause,
-  getInput
+  getInput,
+  showCitiesChecklist
 }

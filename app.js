@@ -3,7 +3,8 @@ require("dotenv").config();
 const {
   mainMenu,
   pause,
-  getInput
+  getInput,
+  showCitiesChecklist
 } = require("./helpers/inquirer");
 const SearchRepository = require("./repositories/search");
 
@@ -17,12 +18,15 @@ const main = async () => {
     switch (mainOption) {
       case 1:
         const city = await getInput('City');
+
         const cities = await searchRepo.searchCities(city);
-        console.log(cities);
+        const selectedId = await showCitiesChecklist(cities);
 
-        // search and show cities
-
-        // select a city
+        if (! selectedId) {
+          break;
+        }
+        const selectedCity = cities.find(city => city.id === selectedId);
+        console.log(selectedCity);
 
         // get weather
 

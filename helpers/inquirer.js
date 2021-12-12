@@ -37,7 +37,24 @@ const pause = async () => {
   return enter;
 }
 
+const getInput = async (message) => {
+  const inputQuestion = {
+    type: 'input',
+    name: 'input',
+    message,
+    validate(value) {
+      return (value.length === 0) ?
+        'Please, enter a value' :
+        true;
+    }
+  }
+
+  const { input } = await inquirer.prompt([ inputQuestion ]);
+  return input;
+}
+
 module.exports = {
   mainMenu,
-  pause
+  pause,
+  getInput
 }

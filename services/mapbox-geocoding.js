@@ -13,9 +13,9 @@ class MapboxGeocoding {
     });
   }
 
-  async searchPlace(place = '') {
+  async searchPlaces(keywords = '') {
     try {
-      const response = await this.axiosInstance.get(`mapbox.places/${ place }.json`);
+      const response = await this.axiosInstance.get(`mapbox.places/${ keywords }.json`);
       return response.data.features;
     } catch (error) {
       return [];

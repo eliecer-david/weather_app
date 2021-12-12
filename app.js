@@ -16,8 +16,9 @@ const main = async () => {
 
     switch (mainOption) {
       case 1:
-        const keyword = await getInput('City');
-        const results = await searchRepo.searchCity(keyword);
+        const city = await getInput('City');
+        const cities = await searchRepo.searchCities(city);
+        console.log(cities);
 
         // search and show cities
 

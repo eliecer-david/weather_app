@@ -5,10 +5,18 @@ class SearchRepository {
   constructor() {
   }
 
-  async searchCity(keyword = '') {
+  async searchCities(keywords = '') {
     const mapboxService = new MapboxGeocoding(process.env.MAPBOX_KEY);
-    const places = await mapboxService.searchPlace(keyword);
-    console.log(places);
+    const places = await mapboxService.searchPlaces(keywords);
+
+    return places.map(place => {
+      return {
+        id: place.id,
+        name: place.place_name,
+        lng: place.center[0],
+        lat: place.center[1]
+      }
+    });
   }
 }
 

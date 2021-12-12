@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/eliecer-david/weather_app#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "colors": "^1.4.0",
     "inquirer": "^8.2.0"
   }

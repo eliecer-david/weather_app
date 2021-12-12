@@ -1,19 +1,23 @@
+require("dotenv").config();
+
 const {
   mainMenu,
   pause,
   getInput
 } = require("./helpers/inquirer");
+const SearchRepository = require("./repositories/search");
 
 const main = async () => {
   let mainOption = 0;
 
   do {
     mainOption = await mainMenu();
+    const searchRepo = new SearchRepository();
 
     switch (mainOption) {
       case 1:
         const keyword = await getInput('City');
-        console.log(keyword);
+        const results = await searchRepo.searchCity(keyword);
 
         // search and show cities
 

@@ -26,9 +26,8 @@ const main = async () => {
           break;
         }
         const selectedCity = cities.find(city => city.id === selectedId);
-        console.log(selectedCity);
-
-        // get weather
+        const weatherData = await searchRepo.getWeather(selectedCity.latitude, selectedCity.longitude);
+        console.log(selectedCity, weatherData);
 
         // show results
         break;

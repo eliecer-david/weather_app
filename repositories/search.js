@@ -1,4 +1,5 @@
 const MapboxGeocoding = require('../services/mapbox-geocoding');
+const OpenWeather = require('../services/open-weather');
 
 class SearchRepository {
 
@@ -13,10 +14,17 @@ class SearchRepository {
       return {
         id: place.id,
         name: place.place_name,
-        lng: place.center[0],
-        lat: place.center[1]
+        longitude: place.center[0],
+        latitude: place.center[1]
       }
     });
+  }
+
+  async getWeather(latitude = '', longitude = '') {
+    const openWeatherService = new OpenWeather(process.env.OPEN_WEATHER_KEY);
+    const weather = await openWeatherService.getWeatherByCoordinates(latitude, longitude);
+
+    return weather;
   }
 }
 

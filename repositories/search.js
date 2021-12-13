@@ -38,9 +38,11 @@ class SearchRepository {
   }
 
   addToHistory(cityName = '') {
-    this.history.unshift(cityName);
+    this.history = this.history
+      .filter(element => element !== cityName)
+      .slice(0, 4);
 
-    this.history = this.history.slice(0, 5);
+    this.history.unshift(cityName);
     this.saveHistoryInFile();
   }
 

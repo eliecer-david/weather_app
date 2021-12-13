@@ -6,7 +6,7 @@ class SearchRepository {
 
   constructor() {
     this.historyFilePath = './storage/repositories/search/history.json';
-    this.storageManager = new StorageManager();
+    this.storageManager = new StorageManager(this.historyFilePath);
 
     this.history = this.getHistoryFromStorage();
   }
@@ -35,7 +35,7 @@ class SearchRepository {
   }
 
   getHistoryFromStorage() {
-    const history = this.storageManager.loadFileAsJson(this.historyFilePath);
+    const history = this.storageManager.loadDataAsJson();
     return history;
   }
 
@@ -47,7 +47,7 @@ class SearchRepository {
   }
 
   saveHistoryInFile() {
-    this.storageManager.saveFile(this.historyFilePath, this.history);
+    this.storageManager.saveData(this.history);
   }
 }
 

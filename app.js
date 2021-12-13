@@ -26,6 +26,8 @@ const main = async () => {
           break;
         }
         const selectedCity = cities.find(city => city.id === selectedId);
+        searchRepo.addToHistory(selectedCity.name);
+
         const weatherData = await searchRepo.getWeather(selectedCity.latitude, selectedCity.longitude);
 
         console.clear()

@@ -12,6 +12,8 @@ class SearchRepository {
   }
 
   async searchCities(keywords = '') {
+    this.addToHistory(keywords);
+
     const mapboxService = new MapboxGeocoding(process.env.MAPBOX_KEY);
     const places = await mapboxService.searchPlaces(keywords);
 
@@ -35,6 +37,17 @@ class SearchRepository {
   getHistoryFromStorage() {
     const history = this.storageManager.loadFileAsJson(this.historyFilePath);
     return history;
+  }
+
+  addToHistory(keywords = '') {
+    this.history.unshift(keywords);
+
+    this.history = this.history.slice(0, 5);
+    this.saveHistoryInFile();
+  }
+
+  saveHistoryInFile() {
+    this.storageManager.saveFile(this.historyFilePath, this.history);
   }
 }
 

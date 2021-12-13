@@ -8,7 +8,7 @@ class SearchRepository {
     this.historyFilePath = './storage/repositories/search/history.json';
     this.storageManager = new StorageManager(this.historyFilePath);
 
-    this.history = this.getHistoryFromStorage();
+    this.history = this.getHistoryFromStorage() ?? [];
   }
 
   async searchCities(keywords = '') {

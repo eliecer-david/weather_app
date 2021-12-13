@@ -44,6 +44,17 @@ const main = async () => {
         }
 
         break;
+
+      case 2:
+        console.clear();
+        console.log('History'.green);
+        console.log('======='.green);
+
+        searchRepo.history.forEach((value, key) => {
+          const index = key + 1;
+          console.log(`${ index }. ${ value }`);
+        });
+        break;
     }
 
     await pause();

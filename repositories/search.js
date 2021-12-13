@@ -1,9 +1,14 @@
 const MapboxGeocoding = require('../services/mapbox-geocoding');
 const OpenWeather = require('../services/open-weather');
+const StorageManager = require('../services/storage-manager');
 
 class SearchRepository {
 
   constructor() {
+    this.historyFilePath = './storage/repositories/search/history.json';
+    this.storageManager = new StorageManager();
+
+    this.history = this.getHistoryFromStorage();
   }
 
   async searchCities(keywords = '') {
@@ -25,6 +30,11 @@ class SearchRepository {
     const weather = await openWeatherService.getWeatherByCoordinates(latitude, longitude);
 
     return weather;
+  }
+
+  getHistoryFromStorage() {
+    const history = this.storageManager.loadFileAsJson(this.historyFilePath);
+    return history;
   }
 }
 

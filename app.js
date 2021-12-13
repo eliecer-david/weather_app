@@ -27,9 +27,22 @@ const main = async () => {
         }
         const selectedCity = cities.find(city => city.id === selectedId);
         const weatherData = await searchRepo.getWeather(selectedCity.latitude, selectedCity.longitude);
-        console.log(selectedCity, weatherData);
 
-        // show results
+        console.clear()
+        console.log('City information'.green);
+        console.log('================'.green);
+        console.log(`${ 'City:'.green } ${ selectedCity.name }`);
+        console.log(`${ 'Latitude:'.green } ${ selectedCity.latitude }`);
+        console.log(`${ 'Longitude:'.green } ${ selectedCity.longitude }`);
+        console.log(`${ 'Temperature:'.green } ${ weatherData.temperature }`);
+        console.log(`${ 'Min:'.green } ${ weatherData.temperatureMax }`);
+        console.log(`${ 'Max:'.green } ${ weatherData.temperatureMin }`);
+        console.log(`${ 'How is the weather?:'.green } ${ weatherData.description }`);
+
+        if (weatherData.message !== 'ok') {
+          console.log(`\nOpenWeather: ${ weatherData.message }`);
+        }
+
         break;
     }
 

@@ -23,9 +23,9 @@ class OpenWeather {
       return {
         message: 'ok',
         description: data.weather[0].description,
-        temperature: data.main.temp,
-        temperatureMin: data.main.temp_min,
-        temperatureMax: data.main.temp_max
+        temperature: `${ data.main.temp } °C`,
+        temperatureMin: `${ data.main.temp_min } °C`,
+        temperatureMax: `${ data.main.temp_max } °C`
       }
     } catch (error) {
       return {
